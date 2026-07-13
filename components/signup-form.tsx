@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { SIGNUP_HEADING, SIGNUP_SUBHEAD } from "@/lib/content";
+import { SIGNUP_ART_SRC, SIGNUP_HEADING, SIGNUP_SUBHEAD } from "@/lib/content";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
@@ -55,14 +55,14 @@ export function SignupForm() {
       className="bg-ink text-offwhite"
     >
       <div className="mx-auto grid max-w-6xl items-center gap-16 px-5 py-24 tablet:grid-cols-2 tablet:gap-20 tablet:px-8 tablet:py-32">
-        <div
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={SIGNUP_ART_SRC}
+          alt=""
           aria-hidden="true"
-          className="min-w-0 font-display text-[clamp(56px,9vw,130px)] font-bold leading-[0.78] tracking-[0.02em] text-offwhite [text-shadow:-12px_0_0_#ff6713,-22px_0_0_#2ba7ff]"
-        >
-          COLLAGE
-          <br />
-          AI
-        </div>
+          className="mx-auto hidden w-full max-w-md tablet:block"
+          loading="lazy"
+        />
 
         <form onSubmit={onSubmit} className="grid max-w-lg gap-4">
           <header className="mb-4">

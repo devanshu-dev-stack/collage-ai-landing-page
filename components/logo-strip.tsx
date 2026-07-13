@@ -1,20 +1,32 @@
+/* eslint-disable @next/next/no-img-element */
 import { PARTNER_LOGOS } from "@/lib/content";
 
-// TODO: swap text placeholders for real institution logo assets
+// Scrolling marquee of partner institution logos (assets from the Framer
+// export). Duplicated once for the seamless loop; respects reduced motion.
 export function LogoStrip() {
   return (
     <section
       aria-label="Partner institutions"
-      className="border-b border-ink/10"
+      className="overflow-hidden border-b border-ink/10 py-9"
     >
-      <div className="mx-auto grid max-w-6xl grid-cols-2 items-center gap-6 px-5 py-10 tablet:grid-cols-7 tablet:gap-8 tablet:px-8">
-        {PARTNER_LOGOS.map((name) => (
-          <div
-            key={name}
-            className="grid min-h-[58px] place-items-center text-center text-caption font-extrabold tracking-tight text-ink/90"
+      <div className="flex w-max animate-marquee gap-16 motion-reduce:w-full motion-reduce:animate-none motion-reduce:flex-wrap motion-reduce:justify-center">
+        {[0, 1].map((copy) => (
+          <ul
+            key={copy}
+            aria-hidden={copy === 1}
+            className="flex shrink-0 items-center gap-16"
           >
-            {name}
-          </div>
+            {PARTNER_LOGOS.map((logo) => (
+              <li key={logo.name} className="shrink-0">
+                <img
+                  src={logo.src}
+                  alt={copy === 0 ? logo.name : ""}
+                  className="h-12 w-auto object-contain"
+                  loading="lazy"
+                />
+              </li>
+            ))}
+          </ul>
         ))}
       </div>
     </section>

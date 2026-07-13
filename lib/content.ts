@@ -8,17 +8,20 @@ export const HERO_SUBHEAD =
   "Helping empower faculty members to easily design, deliver, and assess educational experiences that are adaptive, personalized, and improve student learning outcomes";
 
 // ---------------------------------------------------------------------------
-// Partner institution logo strip
+// Partner institution logo marquee (assets from the Framer export)
 // ---------------------------------------------------------------------------
-// TODO: replace text placeholders with real institution logo assets
-export const PARTNER_LOGOS: readonly string[] = [
-  "Indiana Online",
-  "Ariel University",
-  "Harvard",
-  "University of Haifa",
-  "Duke",
-  "Mountain View",
-  "The Academy",
+export interface PartnerLogo {
+  name: string;
+  src: string;
+}
+
+export const PARTNER_LOGOS: readonly PartnerLogo[] = [
+  { name: "University of Haifa", src: "/images/logo-haifa.png" },
+  { name: "Duke University", src: "/images/logo-duke.png" },
+  { name: "Ariel University", src: "/images/logo-ariel.png" },
+  { name: "The Academy of Tel Aviv-Yafo", src: "/images/logo-academy-tel-aviv.png" },
+  { name: "The College of Management Academic Studies", src: "/images/logo-college-of-management.png" },
+  { name: "Harvard University", src: "/images/logo-harvard.png" },
 ] as const;
 
 // ---------------------------------------------------------------------------
@@ -32,7 +35,7 @@ export const ABOUT_PARAGRAPHS: readonly string[] = [
 ] as const;
 
 // ---------------------------------------------------------------------------
-// Release Features — sticky-note board
+// Release Features — sticky-note board (copy verbatim from the Framer export)
 // ---------------------------------------------------------------------------
 export const FEATURES_HEADING = "Release Features";
 export const FEATURES_SUBHEAD =
@@ -50,44 +53,44 @@ export interface FeatureNote {
 export const FEATURE_NOTES: readonly FeatureNote[] = [
   {
     title: "Native LMS Integration",
-    text: "Seamlessly connect Collage with your LMS to automate workflows and generate course materials in context.",
+    text: "Seamlessly integrate Collage AI into your learning management system with strong data security and cybersecurity",
     color: "green",
     rotate: -5,
   },
   {
     title: "AI-driven Courses",
-    text: "Create course pages, modules, and learning activities based on your teaching goals.",
+    text: "Create scalable digital course content to support any desired learning objectives and enhance existing course content with AI-native capabilities",
     color: "yellow",
     rotate: 3,
   },
   {
     title: "Library",
-    text: "Power institutional knowledge sharing with reusable teaching resources and templates.",
+    text: "Foster institutional knowledge sharing through a repository of faculty contributed projects and cases",
     color: "gold",
     rotate: -4,
   },
   {
     title: "AI as Extension of Faculty",
-    text: "Design personalized learning pathways and support materials from faculty expertise.",
+    text: "Deliver personalized teaching to every student based on their learning profile through a faculty customizable AI tutor with full context of the course",
     color: "blue",
     rotate: 0,
   },
   {
     title: "Dynamic Analytics",
-    text: "Track engagement, performance, and student needs with practical insight loops.",
+    text: "Unlock previously unobtainable student insights derived from all student touchpoints and leverage them through a dashboard with AI queries and custom metrics",
     color: "purple",
     rotate: 0,
   },
   {
     title: "AI Grading and Feedback",
-    text: "Support educators with efficient, consistent feedback grounded in course context.",
+    text: "Provide students with immediate, reviewable evaluation and feedback based on instructor grading criteria to enable time-intensive teaching techniques that were previously impossible at scale",
     color: "lavender",
     rotate: -4,
   },
 ] as const;
 
 // ---------------------------------------------------------------------------
-// Collage in Action — process map
+// Collage in Action — process map (copy from the live site screenshot)
 // ---------------------------------------------------------------------------
 export const PROCESS_HEADING = "Collage in Action";
 export const PROCESS_SUBHEAD =
@@ -101,63 +104,64 @@ export interface ProcessStep {
 export const PROCESS_STEPS: readonly ProcessStep[] = [
   {
     title: "Design",
-    text: "Faculty can quickly transform source materials or existing content into scalable digital course content.",
+    text: "Faculty can quickly transform source materials or existing content into scalable digital courses. Content is easily generated and modified through AI covering many modalities including videos, mind maps, flashcards, and more.",
   },
   {
     title: "Deliver",
-    text: "Provide an engaging learning experience with 24/7 tutor support, customized by faculty.",
+    text: "Provide an engaging learning experience with 24/7 tutor support customized by faculty. Students stay on track, while questions and interactive AI chats expand the faculty toolkit without adding time to workloads.",
   },
   {
     title: "Assess",
-    text: "Instant grading does the heavy lifting while faculty gain feedback and visibility.",
+    text: "Instant grading does the heavy lifting while faculty easily review and edit scores and feedback. By capturing every touchpoint, faculty can go beyond simple scores and gain a holistic understanding of how students learn, struggle, and succeed in real time.",
   },
 ] as const;
 
 // ---------------------------------------------------------------------------
-// Case study
+// Case study (stats verbatim from the Framer export)
 // ---------------------------------------------------------------------------
 export const CASE_STUDY_CAPTION = "Case Study";
 export const CASE_STUDY_HEADING =
   "Quantifying platform impact on student learning outcomes.";
-export const CASE_STUDY_INSTITUTION = "Harvard University";
-export const CASE_STUDY_DEPARTMENT = "Department of Physics";
-export const CASE_STUDY_BODY =
-  "Collage AI was deployed for an entire semester in a large, introductory physics course. Students learned content asynchronously and applied knowledge through project-based learning.";
+export const CASE_STUDY_CHART_SRC = "/images/case-study-chart.png";
+export const CASE_STUDY_CHART_ALT =
+  "Bar chart of mean normalized gain: 0.26 in the semester without Collage AI versus 0.42 in the semester with Collage AI";
 
 export interface CaseStudyStat {
   value: string;
+  suffix?: string;
   label: string;
 }
 
 export const CASE_STUDY_STATS: readonly CaseStudyStat[] = [
-  { value: "62%", label: "Increase in learning gains over baseline semester" },
-  { value: "0.92", label: "Mean normalized gain with Collage AI" },
+  { value: "62", suffix: "%", label: "Increase in learning gains over baseline semester" },
+  { value: "0.42", label: "Mean normalized gain with Collage AI" },
 ] as const;
 
 // ---------------------------------------------------------------------------
 // Testimonials — "Voices from the Classroom"
 // ---------------------------------------------------------------------------
 export const TESTIMONIALS_HEADING = "Voices from the Classroom";
+export const TESTIMONIAL_CITE = "Up & up only →";
 
+// First quote is verbatim from the live site; TODO: replace the rest with
+// real quotes when available.
 export const TESTIMONIALS: readonly Testimonial[] = [
+  {
+    quote: "So many different ways of teaching you.",
+    author: "Student",
+    role: "",
+    rating: 5,
+  },
   {
     quote: "It transformed what my students were able to achieve.",
     author: "Physics Faculty",
-    role: "Harvard University",
+    role: "",
     rating: 5,
   },
   {
-    quote:
-      "Course design that used to take a full summer now takes a week — and the materials adapt to each student.",
-    author: "Instructional Designer",
-    role: "Indiana Online",
-    rating: 5,
-  },
-  {
-    quote:
-      "The feedback loop is the real difference. My students know where they stand every single week.",
+    quote: "My students know where they stand every single week.",
     author: "Teaching Faculty",
-    role: "University of Haifa",
+    role: "",
     rating: 5,
   },
 ] as const;
@@ -167,3 +171,4 @@ export const TESTIMONIALS: readonly Testimonial[] = [
 // ---------------------------------------------------------------------------
 export const SIGNUP_HEADING = "Stay Updated";
 export const SIGNUP_SUBHEAD = "Be the first to know about releases and updates";
+export const SIGNUP_ART_SRC = "/images/collage-bookmark.png";

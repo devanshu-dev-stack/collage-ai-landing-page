@@ -1,64 +1,66 @@
-import { Landmark } from "lucide-react";
-import { Button } from "./button";
-import { CTA_HREF } from "@/lib/site";
+/* eslint-disable @next/next/no-img-element */
 import {
-  CASE_STUDY_BODY,
   CASE_STUDY_CAPTION,
-  CASE_STUDY_DEPARTMENT,
+  CASE_STUDY_CHART_ALT,
+  CASE_STUDY_CHART_SRC,
   CASE_STUDY_HEADING,
-  CASE_STUDY_INSTITUTION,
   CASE_STUDY_STATS,
 } from "@/lib/content";
 
-// Case study block — heading, institution, stats and the hand-sketched
-// "student growth" axis, as on the live site.
+// Corner "selection handles" motif from the export's stat cards
+function HandleFrame({ children }: { children: React.ReactNode }) {
+  const handle = "absolute h-1.5 w-1.5 bg-ink";
+  return (
+    <div className="relative border-[1.5px] border-ink bg-offwhite/60 p-6">
+      <span aria-hidden="true" className={`${handle} -left-1 -top-1`} />
+      <span aria-hidden="true" className={`${handle} -right-1 -top-1`} />
+      <span aria-hidden="true" className={`${handle} -bottom-1 -left-1`} />
+      <span aria-hidden="true" className={`${handle} -bottom-1 -right-1`} />
+      {children}
+    </div>
+  );
+}
+
+// Case study — heading, the hand-annotated gains chart from the live site,
+// and the two stat cards. Reused on Home and /case-study.
 export function CaseStudySection() {
   return (
     <section
       id="case-study"
       aria-labelledby="case-study-heading"
-      className="mx-auto grid max-w-5xl items-center gap-12 px-5 py-24 tablet:grid-cols-2 tablet:gap-20 tablet:px-8"
+      className="mx-auto max-w-6xl px-5 py-24 tablet:px-8"
     >
-      <div>
-        <header className="mb-10">
-          <h2
-            id="case-study-heading"
-            className="mb-3 font-display text-section-h2 font-medium text-ink"
-          >
-            {CASE_STUDY_CAPTION}
-          </h2>
-          <p className="text-body-m text-muted">{CASE_STUDY_HEADING}</p>
-        </header>
+      <header className="mb-12 text-center">
+        <h2
+          id="case-study-heading"
+          className="mb-3 font-display text-section-h2 font-medium text-ink"
+        >
+          {CASE_STUDY_CAPTION}
+        </h2>
+        <p className="text-body-m text-muted">{CASE_STUDY_HEADING}</p>
+      </header>
 
-        <p className="mb-1 flex items-center gap-2 text-h3 font-black uppercase tracking-[0.08em] text-ink">
-          <Landmark className="h-5 w-5 shrink-0" aria-hidden="true" />
-          {CASE_STUDY_INSTITUTION}
-        </p>
-        <p className="mb-7 text-caption uppercase tracking-[0.12em] text-muted">
-          {CASE_STUDY_DEPARTMENT}
-        </p>
+      <img
+        src={CASE_STUDY_CHART_SRC}
+        alt={CASE_STUDY_CHART_ALT}
+        className="mx-auto w-full max-w-3xl"
+        loading="lazy"
+      />
 
-        <p className="mb-8 text-body-m leading-relaxed text-ink">{CASE_STUDY_BODY}</p>
-
-        <Button href={CTA_HREF}>Learn more</Button>
-
-        <dl className="mt-14 grid max-w-md grid-cols-1 gap-4 tablet:grid-cols-2">
-          {CASE_STUDY_STATS.map((stat) => (
-            <div key={stat.value} className="min-h-[120px] border-2 border-ink p-5">
-              <dt className="sr-only">{stat.label}</dt>
-              <dd className="font-accent text-stat text-accent">{stat.value}</dd>
-              <dd className="mt-2 text-caption text-ink">{stat.label}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-
-      <div aria-hidden="true" className="relative hidden min-h-[420px] opacity-80 tablet:block">
-        <div className="absolute inset-x-20 inset-y-[70px] -skew-x-[20deg] border-b border-l border-ink/20" />
-        <span className="absolute left-[190px] top-[170px] -rotate-[20deg] font-accent text-card-h3 text-accent">
-          student growth
-        </span>
-      </div>
+      <dl className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-6 tablet:grid-cols-2">
+        {CASE_STUDY_STATS.map((stat) => (
+          <HandleFrame key={stat.label}>
+            <dt className="sr-only">{stat.label}</dt>
+            <dd className="text-center font-accent text-stat text-accent">
+              {stat.value}
+              {stat.suffix && <span className="text-card-h3">{stat.suffix}</span>}
+            </dd>
+            <dd className="mt-3 text-center font-display text-h3 leading-snug text-ink">
+              {stat.label}
+            </dd>
+          </HandleFrame>
+        ))}
+      </dl>
     </section>
   );
 }

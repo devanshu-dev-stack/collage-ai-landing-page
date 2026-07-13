@@ -29,7 +29,7 @@ export default function HomePage() {
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -left-52 top-28 h-[520px] w-[520px] rounded-full bg-glow-cyan opacity-55 blur-2xl"
+          className="pointer-events-none absolute -bottom-40 -left-52 h-[520px] w-[520px] rounded-full bg-glow-cyan opacity-55 blur-2xl"
         />
         <div
           aria-hidden="true"
