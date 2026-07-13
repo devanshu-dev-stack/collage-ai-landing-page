@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { PARTNER_LOGOS } from "@/lib/content";
 
-// Scrolling marquee of partner institution logos. The list is duplicated and
-// the track animates exactly -50%, with identical gaps inside and between the
-// copies (gap + matching padding-right), so the loop has no visible seam.
-// Respects reduced motion.
+// Scrolling marquee of partner institution logos. The list renders four
+// times so the track always covers wide viewports, and the animation moves
+// exactly -50% (two list-widths) with identical gaps inside and between
+// copies — an infinite loop with no visible end. Respects reduced motion.
 export function LogoStrip() {
   return (
     <section
@@ -12,10 +12,10 @@ export function LogoStrip() {
       className="overflow-hidden py-[40px]"
     >
       <div className="flex w-max animate-marquee motion-reduce:w-full motion-reduce:animate-none motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-[88px]">
-        {[0, 1].map((copy) => (
+        {[0, 1, 2, 3].map((copy) => (
           <ul
             key={copy}
-            aria-hidden={copy === 1}
+            aria-hidden={copy > 0}
             className="flex shrink-0 items-center gap-[88px] pr-[88px]"
           >
             {PARTNER_LOGOS.map((logo) => (
