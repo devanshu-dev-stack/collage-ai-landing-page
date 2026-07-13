@@ -38,7 +38,7 @@ const config: Config = {
         display: ["var(--font-display)", "Copernicus", "Georgia", "serif"],
         body: ["var(--font-geist-sans)", "Geist", "system-ui", "sans-serif"],
         ui: ["var(--font-ui)", "Onest", "system-ui", "sans-serif"],
-        accent: ["var(--font-accent)", "DK Formosa", "cursive"],
+        accent: ["var(--font-accent)", "Caveat", "cursive"],
       },
       fontSize: {
         hero: ["clamp(56px, 7vw, 92px)", { lineHeight: "0.96", letterSpacing: "-0.045em" }],

@@ -1,8 +1,15 @@
 import { GeistSans } from "geist/font/sans";
-import { Onest } from "next/font/google";
+import { Caveat, Onest } from "next/font/google";
 
 // Geist — body copy & captions (official Vercel package; exposes --font-geist-sans)
 export const geist = GeistSans;
+
+// Caveat — handwritten accents (stat numbers, testimonial attribution, chart notes)
+export const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-accent",
+  display: "swap",
+});
 
 // Onest — buttons & nav labels
 export const onest = Onest({
@@ -11,6 +18,6 @@ export const onest = Onest({
   display: "swap",
 });
 
-// Copernicus (display) and DK Formosa (accent) are custom licensed fonts,
-// declared via @font-face in globals.css. Drop the woff2 files into
-// /public/fonts (see README) — until then the serif fallbacks render.
+// Copernicus (display headings) is a custom licensed font declared via
+// @font-face in globals.css. Drop the woff2 into /public/fonts (see README) —
+// until then the serif fallback renders.

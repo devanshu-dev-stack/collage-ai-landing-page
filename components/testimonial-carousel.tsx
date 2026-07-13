@@ -60,14 +60,14 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
           aria-label={`Testimonial ${index + 1} of ${testimonials.length}`}
         >
           <div>
-            <figcaption className="mb-5 font-accent text-h3 text-accent">
+            <figcaption className="mb-5 font-accent text-[22px] font-semibold uppercase tracking-wide text-accent">
               {active.author}
               {active.role && ` · ${active.role}`}
             </figcaption>
             <blockquote className="font-display text-card-h3 leading-snug text-ink">
               “{active.quote}”
             </blockquote>
-            <p aria-hidden="true" className="mt-6 font-accent text-h3 text-accent">
+            <p aria-hidden="true" className="mt-6 font-accent text-[22px] font-semibold text-accent">
               {TESTIMONIAL_CITE}
             </p>
           </div>

@@ -59,7 +59,7 @@ export const FEATURE_NOTES: readonly FeatureNote[] = [
   },
   {
     title: "AI-driven Courses",
-    text: "Create scalable digital course content to support any desired learning objectives and enhance existing course content with AI-native capabilities",
+    text: "Empower faculty to create scalable digital course content to support any desired learning objectives and enhance existing course content with AI-native capabilities",
     color: "yellow",
     rotate: 3,
   },
@@ -122,6 +122,11 @@ export const PROCESS_STEPS: readonly ProcessStep[] = [
 export const CASE_STUDY_CAPTION = "Case Study";
 export const CASE_STUDY_HEADING =
   "Quantifying platform impact on student learning outcomes.";
+export const CASE_STUDY_INSTITUTION = "Harvard University";
+export const CASE_STUDY_DEPARTMENT = "Department of Physics";
+export const CASE_STUDY_CREST_SRC = "/images/harvard-crest.png";
+export const CASE_STUDY_BODY =
+  "Collage AI was deployed for an entire semester in a large, introductory physics course. Students learned content asynchronously and applied knowledge with in-classroom project-based learning. Collage AI replaced the two platforms previously used for the asynchronous component.";
 export const CASE_STUDY_CHART_SRC = "/images/case-study-chart.png";
 export const CASE_STUDY_CHART_ALT =
   "Bar chart of mean normalized gain: 0.26 in the semester without Collage AI versus 0.42 in the semester with Collage AI";
@@ -141,26 +146,19 @@ export const CASE_STUDY_STATS: readonly CaseStudyStat[] = [
 // Testimonials — "Voices from the Classroom"
 // ---------------------------------------------------------------------------
 export const TESTIMONIALS_HEADING = "Voices from the Classroom";
-export const TESTIMONIAL_CITE = "Up & up only →";
+export const TESTIMONIAL_CITE = "up & up only →";
 
-// First quote is verbatim from the live site; TODO: replace the rest with
-// real quotes when available.
+// Quotes verbatim from the live site
 export const TESTIMONIALS: readonly Testimonial[] = [
   {
+    quote: "Adaptive feedback helped me understand key concepts.",
+    author: "A Student",
+    role: "",
+    rating: 5,
+  },
+  {
     quote: "So many different ways of teaching you.",
-    author: "Student",
-    role: "",
-    rating: 5,
-  },
-  {
-    quote: "It transformed what my students were able to achieve.",
-    author: "Physics Faculty",
-    role: "",
-    rating: 5,
-  },
-  {
-    quote: "My students know where they stand every single week.",
-    author: "Teaching Faculty",
+    author: "A Student",
     role: "",
     rating: 5,
   },

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { geist, onest } from "./fonts";
+import { caveat, geist, onest } from "./fonts";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
@@ -34,7 +34,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${geist.variable} ${onest.variable}`}>
+      <body className={`${geist.variable} ${onest.variable} ${caveat.variable}`}>
         <Nav />
         <main id="main">{children}</main>
         <Footer />

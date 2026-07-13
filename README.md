@@ -34,13 +34,13 @@ Copy `.env.example` to `.env.local`:
 
 ## TODOs before launch
 
-1. **Font files** — Copernicus and DK Formosa are custom licensed fonts. Export the
-   woff2 files from Framer (or license them) and place them at:
+1. **Font files** — Copernicus (display headings) is a custom licensed font.
+   Export the woff2 from Framer (or license it) and place it at:
    - `public/fonts/Copernicus-Regular.woff2`
-   - `public/fonts/DKFormosa-Regular.woff2`
 
-   They are declared via `@font-face` in `app/globals.css`; until the files exist,
-   serif fallbacks render. Geist and Onest load automatically via `next/font/google`.
+   It is declared via `@font-face` in `app/globals.css`; until the file exists,
+   a serif fallback renders. Geist (body), Caveat (handwritten accents), and
+   Onest (buttons/nav) load automatically from packages/Google Fonts.
 2. **Hero video** — upload the hero video to an external CDN (Mux, Cloudflare
    Stream, or Bunny — do not use Framer asset URLs) and set
    `NEXT_PUBLIC_HERO_VIDEO_URL`.
