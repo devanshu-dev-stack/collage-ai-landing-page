@@ -1,13 +1,12 @@
-// Text wordmark matching the live site brand ("Collage" serif + "Ai" sans)
+/* eslint-disable @next/next/no-img-element */
+// Brand wordmark exported from the Figma design file (583×165 vector).
+// `inverse` swaps to the cream version for dark surfaces.
 export function Logo({ inverse = false }: { inverse?: boolean }) {
   return (
-    <span
-      className={`font-display text-[19px] font-bold tracking-tight ${
-        inverse ? "text-offwhite" : "text-ink"
-      }`}
-    >
-      Collage
-      <span className="ml-px font-body font-bold">Ai</span>
-    </span>
+    <img
+      src={inverse ? "/images/logo-light.svg" : "/images/logo.svg"}
+      alt="Collage AI"
+      className="h-[26px] w-auto"
+    />
   );
 }
