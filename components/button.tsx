@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-type ButtonVariant = "gradient" | "secondary" | "inverse";
+type ButtonVariant = "dark" | "light";
 
 interface ButtonBaseProps {
   variant?: ButtonVariant;
-  showArrow?: boolean;
   className?: string;
   children: React.ReactNode;
 }
@@ -25,24 +24,25 @@ interface ButtonActionProps extends ButtonBaseProps {
 type ButtonProps = ButtonLinkProps | ButtonActionProps;
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  gradient:
-    "bg-btn-gradient text-white shadow-soft hover:opacity-90 active:opacity-80",
-  secondary:
-    "bg-white text-primary border border-primary-highlight/30 shadow-soft hover:bg-primary-bg",
-  inverse:
-    "bg-inverse-text text-primary hover:bg-white",
+  dark: "bg-ink text-offwhite hover:opacity-90",
+  light: "bg-offwhite text-ink hover:bg-white",
 };
 
+const ARROW_CLASSES: Record<ButtonVariant, string> = {
+  dark: "bg-offwhite text-ink",
+  light: "bg-ink text-offwhite",
+};
+
+// Pill button with the circular arrow chip, as on the live site
 export function Button({
-  variant = "gradient",
-  showArrow = false,
+  variant = "dark",
   className = "",
   children,
   ...rest
 }: ButtonProps) {
   const classes = [
-    "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3",
-    "font-ui text-button font-medium transition-[opacity,background-color] duration-200",
+    "inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5",
+    "font-ui text-button font-bold transition-opacity duration-200",
     "disabled:cursor-not-allowed disabled:opacity-60",
     VARIANT_CLASSES[variant],
     className,
@@ -51,7 +51,12 @@ export function Button({
   const content = (
     <>
       {children}
-      {showArrow && <ArrowRight className="h-4 w-4" aria-hidden="true" />}
+      <span
+        className={`grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full ${ARROW_CLASSES[variant]}`}
+        aria-hidden="true"
+      >
+        <ArrowRight className="h-3 w-3" />
+      </span>
     </>
   );
 

@@ -1,22 +1,26 @@
-import { Caption } from "./caption";
-import { Heading } from "./heading";
-import { ABOUT_BODY, ABOUT_CAPTION, ABOUT_HEADING } from "@/lib/content";
+import { ABOUT_HEADING, ABOUT_KICKER, ABOUT_PARAGRAPHS } from "@/lib/content";
 
-// Reused on Home and Case Study (spec §8–9)
+// About block — serif kicker, orange heading, bold body (as on the live site).
+// Reused on Home and Case Study.
 export function AboutSection() {
   return (
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="mx-auto max-w-6xl px-5 py-20 tablet:px-8 tablet:py-28"
+      className="mx-auto max-w-5xl px-5 py-16 tablet:px-8 tablet:py-20"
     >
-      <div className="mx-auto max-w-3xl text-center">
-        <Caption className="mb-4">{ABOUT_CAPTION}</Caption>
-        <Heading as="h2" id="about-heading">
-          {ABOUT_HEADING}
-        </Heading>
-        <p className="salt mt-6 text-body-l text-primary-200">{ABOUT_BODY}</p>
-      </div>
+      <p className="mb-1 font-display text-kicker text-ink">{ABOUT_KICKER}</p>
+      <h2 id="about-heading" className="mb-5 text-h3 font-semibold text-accent">
+        {ABOUT_HEADING}
+      </h2>
+      {ABOUT_PARAGRAPHS.map((paragraph) => (
+        <p
+          key={paragraph}
+          className="mb-4 max-w-[850px] text-body-m font-semibold leading-relaxed text-ink"
+        >
+          {paragraph}
+        </p>
+      ))}
     </section>
   );
 }

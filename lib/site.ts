@@ -14,10 +14,9 @@ export interface NavLink {
 }
 
 export const NAV_LINKS: readonly NavLink[] = [
-  { label: "Features", href: "/#features" },
-  { label: "Case Studies", href: "/case-study" },
   { label: "About", href: "/#about" },
-  { label: "Contact", href: "/#stay-updated" },
+  { label: "Features", href: "/#features" },
+  { label: "Case Study", href: "/#case-study" },
 ] as const;
 
 export const CTA_LABEL = "Stay Updated";

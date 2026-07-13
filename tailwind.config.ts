@@ -1,4 +1,4 @@
-// tailwind.config.ts — Collage AI design system
+// tailwind.config.ts — Collage AI design system (matched to collage-ai.com)
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -6,52 +6,53 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: "rgb(87, 62, 105)",   // Primary/Primary
-          200: "rgb(125, 95, 146)",
-          600: "rgb(72, 57, 83)",
-          highlight: "rgb(159, 128, 218)",
-          textsecondary: "rgb(152, 128, 171)",
-          bg: "rgb(247, 240, 250)",       // Primary/Background
+        cream: "#fdf8eb",
+        ink: "#002341",
+        muted: "#5d6870",
+        soft: "#b2b2b2",
+        accent: "#ff6713",
+        offwhite: "#fffaf0",
+        line: "rgba(0, 35, 65, 0.18)",
+        note: {
+          green: "#baf4a8",
+          yellow: "#ffe797",
+          gold: "#ffe99f",
+          blue: "#b7d6ff",
+          purple: "#cbbaff",
+          lavender: "#cfc4ff",
         },
-        inverse: {
-          text: "rgb(251, 245, 255)",
-          bg: "rgb(39, 31, 54)",
-          border: "rgba(180, 156, 197, 0.2)",
-        },
-        white: "rgb(255, 255, 255)",
-        white50: "rgba(255, 255, 255, 0.5)",
       },
       boxShadow: {
-        soft: "0 8px 40px rgba(180, 156, 197, 0.08)",
+        note: "0 10px 18px rgba(0, 35, 65, 0.07)",
+        sketch: "8px 8px 0 #002341",
       },
       backgroundImage: {
-        "btn-gradient":
-          "linear-gradient(135deg, rgb(153,155,255) 0%, rgb(135,101,215) 50%, rgb(218,158,240) 100%)",
-        "feature-gradient":
-          "linear-gradient(135deg, rgba(204,205,255,.7) 0%, rgba(235,203,247,.7) 50%, rgba(166,140,225,.7) 100%)",
-        "radial-1": "radial-gradient(circle, rgba(208,208,255,0.5), transparent 70%)",
-        "radial-2": "radial-gradient(circle, rgb(236,216,243), transparent 70%)",
-        "radial-3": "radial-gradient(circle, rgba(170,143,228,0.2), transparent 70%)",
+        "grid-paper":
+          "linear-gradient(rgba(0,35,65,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,35,65,.1) 1px, transparent 1px)",
+        "grid-board":
+          "linear-gradient(rgba(0,35,65,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(0,35,65,.14) 1px, transparent 1px)",
+        "glow-cyan": "radial-gradient(circle, rgba(127,222,255,.65), transparent 65%)",
+        "glow-pink": "radial-gradient(circle, rgba(255,128,158,.55), transparent 65%)",
       },
       fontFamily: {
         display: ["var(--font-display)", "Copernicus", "Georgia", "serif"],
         body: ["var(--font-geist-sans)", "Geist", "system-ui", "sans-serif"],
         ui: ["var(--font-ui)", "Onest", "system-ui", "sans-serif"],
-        accent: ["var(--font-accent)", "DK Formosa", "Georgia", "serif"],
+        accent: ["var(--font-accent)", "DK Formosa", "cursive"],
       },
       fontSize: {
-        // Responsive per spec §5 via clamp(): mobile → desktop
-        h1: ["clamp(38px, 2.7vw + 28px, 72px)", { lineHeight: "1.2", letterSpacing: "-0.05em" }],
-        "h2-l": ["clamp(32px, 2.4vw + 23px, 62px)", { lineHeight: "1.1", letterSpacing: "-0.04em" }],
-        h3: ["clamp(18px, 0.2vw + 17px, 20px)", { lineHeight: "1.4", letterSpacing: "0" }],
-        "body-l": ["clamp(18px, 0.5vw + 16px, 24px)", { lineHeight: "1.3", letterSpacing: "-0.01em" }],
-        "body-m": ["15px", { lineHeight: "1.4", letterSpacing: "0" }],
-        caption: ["clamp(12px, 0.1vw + 12px, 13px)", { lineHeight: "1.5", letterSpacing: "0.06em" }],
-        button: ["18px", { lineHeight: "1.5", letterSpacing: "0" }],
+        hero: ["clamp(56px, 7vw, 92px)", { lineHeight: "0.96", letterSpacing: "-0.045em" }],
+        "section-h2": ["36px", { lineHeight: "1.15", letterSpacing: "-0.03em" }],
+        kicker: ["34px", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
+        h3: ["20px", { lineHeight: "1.4", letterSpacing: "0" }],
+        "card-h3": ["28px", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
+        "body-m": ["16px", { lineHeight: "1.55", letterSpacing: "0" }],
+        "body-s": ["13px", { lineHeight: "1.5", letterSpacing: "0" }],
+        caption: ["12px", { lineHeight: "1.5", letterSpacing: "0.12em" }],
+        button: ["12px", { lineHeight: "1", letterSpacing: "0" }],
+        stat: ["52px", { lineHeight: "0.9", letterSpacing: "0" }],
       },
       screens: {
-        // Framer breakpoints (mobile-first)
         tablet: "810px",
         desktop: "1200px",
       },

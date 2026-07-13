@@ -1,52 +1,137 @@
-import type { AccordionItem } from "@/components/accordion";
-import type { FeatureComparisonItem } from "@/components/feature-comparison";
 import type { Testimonial } from "@/components/testimonial-carousel";
 
 // ---------------------------------------------------------------------------
-// Hero (spec §8 — copy verbatim)
+// Hero (copy verbatim from live site)
 // ---------------------------------------------------------------------------
 export const HERO_HEADING = "Human-centered teaching, amplified by AI";
 export const HERO_SUBHEAD =
   "Helping empower faculty members to easily design, deliver, and assess educational experiences that are adaptive, personalized, and improve student learning outcomes";
 
 // ---------------------------------------------------------------------------
-// About (spec §8 — copy verbatim)
+// Partner institution logo strip
 // ---------------------------------------------------------------------------
-export const ABOUT_CAPTION = "About Us";
-export const ABOUT_HEADING = "A Public Benefit Corporation";
-export const ABOUT_BODY =
-  "Collage AI is on a mission to empower teaching, enhance learning, and personalize education at scale through artificial intelligence. We believe that by reducing the administrative burden on educators and providing intelligent support to students, we can unlock unprecedented potential in higher education.";
+// TODO: replace text placeholders with real institution logo assets
+export const PARTNER_LOGOS: readonly string[] = [
+  "Indiana Online",
+  "Ariel University",
+  "Harvard",
+  "University of Haifa",
+  "Duke",
+  "Mountain View",
+  "The Academy",
+] as const;
 
 // ---------------------------------------------------------------------------
-// Feature comparison — "With it / Without it" blocks (3 items)
+// About
 // ---------------------------------------------------------------------------
-export const FEATURES_CAPTION = "Features";
-export const FEATURES_HEADING = "Collage in Action";
+export const ABOUT_KICKER = "About Us";
+export const ABOUT_HEADING = "A Public Benefit Corporation";
+export const ABOUT_PARAGRAPHS: readonly string[] = [
+  "Collage AI is on a mission to empower teaching, enhance learning, and personalize education at scale through artificial intelligence.",
+  "We believe that by reducing the administrative burden on educators and providing intelligent support to students, we can unlock unprecedented potential in higher education.",
+] as const;
+
+// ---------------------------------------------------------------------------
+// Release Features — sticky-note board
+// ---------------------------------------------------------------------------
+export const FEATURES_HEADING = "Release Features";
 export const FEATURES_SUBHEAD =
+  "Launch-ready capabilities designed to transform teaching and learning from day one";
+
+export type NoteColor = "green" | "yellow" | "gold" | "blue" | "purple" | "lavender";
+
+export interface FeatureNote {
+  title: string;
+  text: string;
+  color: NoteColor;
+  rotate: number;
+}
+
+export const FEATURE_NOTES: readonly FeatureNote[] = [
+  {
+    title: "Native LMS Integration",
+    text: "Seamlessly connect Collage with your LMS to automate workflows and generate course materials in context.",
+    color: "green",
+    rotate: -5,
+  },
+  {
+    title: "AI-driven Courses",
+    text: "Create course pages, modules, and learning activities based on your teaching goals.",
+    color: "yellow",
+    rotate: 3,
+  },
+  {
+    title: "Library",
+    text: "Power institutional knowledge sharing with reusable teaching resources and templates.",
+    color: "gold",
+    rotate: -4,
+  },
+  {
+    title: "AI as Extension of Faculty",
+    text: "Design personalized learning pathways and support materials from faculty expertise.",
+    color: "blue",
+    rotate: 0,
+  },
+  {
+    title: "Dynamic Analytics",
+    text: "Track engagement, performance, and student needs with practical insight loops.",
+    color: "purple",
+    rotate: 0,
+  },
+  {
+    title: "AI Grading and Feedback",
+    text: "Support educators with efficient, consistent feedback grounded in course context.",
+    color: "lavender",
+    rotate: -4,
+  },
+] as const;
+
+// ---------------------------------------------------------------------------
+// Collage in Action — process map
+// ---------------------------------------------------------------------------
+export const PROCESS_HEADING = "Collage in Action";
+export const PROCESS_SUBHEAD =
   "Design smarter, deliver faster, and assess your impact without the extra workload";
 
-export const FEATURE_COMPARISON_ITEMS: readonly FeatureComparisonItem[] = [
+export interface ProcessStep {
+  title: string;
+  text: string;
+}
+
+export const PROCESS_STEPS: readonly ProcessStep[] = [
   {
     title: "Design",
-    withIt:
-      "Faculty quickly transform source materials or existing content into scalable digital course content.",
-    withoutIt:
-      "Weeks of manual authoring to turn lecture notes and readings into course pages and activities.",
+    text: "Faculty can quickly transform source materials or existing content into scalable digital course content.",
   },
   {
     title: "Deliver",
-    withIt:
-      "An engaging learning experience with 24/7 tutor support, customized by faculty.",
-    withoutIt:
-      "Students wait for office hours while questions pile up between class sessions.",
+    text: "Provide an engaging learning experience with 24/7 tutor support, customized by faculty.",
   },
   {
     title: "Assess",
-    withIt:
-      "Instant grading does the heavy lifting while faculty gain feedback and visibility.",
-    withoutIt:
-      "Grading backlogs delay feedback until it no longer shapes student learning.",
+    text: "Instant grading does the heavy lifting while faculty gain feedback and visibility.",
   },
+] as const;
+
+// ---------------------------------------------------------------------------
+// Case study
+// ---------------------------------------------------------------------------
+export const CASE_STUDY_CAPTION = "Case Study";
+export const CASE_STUDY_HEADING =
+  "Quantifying platform impact on student learning outcomes.";
+export const CASE_STUDY_INSTITUTION = "Harvard University";
+export const CASE_STUDY_DEPARTMENT = "Department of Physics";
+export const CASE_STUDY_BODY =
+  "Collage AI was deployed for an entire semester in a large, introductory physics course. Students learned content asynchronously and applied knowledge through project-based learning.";
+
+export interface CaseStudyStat {
+  value: string;
+  label: string;
+}
+
+export const CASE_STUDY_STATS: readonly CaseStudyStat[] = [
+  { value: "62%", label: "Increase in learning gains over baseline semester" },
+  { value: "0.92", label: "Mean normalized gain with Collage AI" },
 ] as const;
 
 // ---------------------------------------------------------------------------
@@ -78,37 +163,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
 ] as const;
 
 // ---------------------------------------------------------------------------
-// FAQ
+// Signup
 // ---------------------------------------------------------------------------
-export const FAQ_CAPTION = "FAQ";
-export const FAQ_HEADING = "Frequently Asked Questions";
-
-export const FAQ_ITEMS: readonly AccordionItem[] = [
-  {
-    question: "Does Collage integrate with our LMS?",
-    answer:
-      "Yes. Collage connects natively with your LMS to automate workflows and generate course materials in context.",
-  },
-  {
-    question: "Who controls the AI-generated content?",
-    answer:
-      "Faculty do. Collage acts as an extension of faculty expertise — every pathway, activity, and piece of feedback is designed and approved by educators.",
-  },
-  {
-    question: "How does Collage measure learning outcomes?",
-    answer:
-      "Dynamic analytics track engagement, performance, and student needs with practical insight loops, so faculty can see impact as the semester unfolds.",
-  },
-  {
-    question: "Is Collage AI a for-profit company?",
-    answer:
-      "Collage AI, Inc. is a Public Benefit Corporation — our charter commits us to improving student learning outcomes, not just growth.",
-  },
-] as const;
-
-// ---------------------------------------------------------------------------
-// Case study (spec §9 — copy verbatim)
-// ---------------------------------------------------------------------------
-export const CASE_STUDY_CAPTION = "Case Study";
-export const CASE_STUDY_HEADING =
-  "Quantifying platform impact on student learning outcomes.";
+export const SIGNUP_HEADING = "Stay Updated";
+export const SIGNUP_SUBHEAD = "Be the first to know about releases and updates";

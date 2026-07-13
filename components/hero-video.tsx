@@ -37,7 +37,7 @@ export function HeroVideo() {
   if (!videoUrl) return null;
 
   return (
-    <div className="mx-auto mt-14 max-w-4xl overflow-hidden rounded-3xl shadow-soft">
+    <div className="mx-auto mt-14 max-w-4xl overflow-hidden border-2 border-ink shadow-note">
       <video
         ref={videoRef}
         src={videoUrl}
