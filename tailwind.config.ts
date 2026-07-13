@@ -68,9 +68,11 @@ const config: Config = {
         desktop: "1200px",
       },
       keyframes: {
+        // The track holds two identical lists with matching internal gap and
+        // trailing padding, so -50% lands exactly on the seam.
         marquee: {
           from: { transform: "translateX(0)" },
-          to: { transform: "translateX(calc(-50% - 2rem))" },
+          to: { transform: "translateX(-50%)" },
         },
       },
       animation: {
