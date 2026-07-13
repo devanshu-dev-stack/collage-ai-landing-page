@@ -140,11 +140,22 @@ export interface CaseStudyStat {
   value: string;
   suffix?: string;
   label: string;
+  imageSrc: string;
 }
 
+// Rendered from the exported stat card artwork; value/label feed screen readers
 export const CASE_STUDY_STATS: readonly CaseStudyStat[] = [
-  { value: "62", suffix: "%", label: "Increase in learning gains over baseline semester" },
-  { value: "0.42", label: "Mean normalized gain with Collage AI" },
+  {
+    value: "62",
+    suffix: "%",
+    label: "Increase in learning gains over baseline semester",
+    imageSrc: "/images/stat-62.png",
+  },
+  {
+    value: "0.42",
+    label: "Mean normalized gain with Collage AI",
+    imageSrc: "/images/stat-042.png",
+  },
 ] as const;
 
 // ---------------------------------------------------------------------------
@@ -152,25 +163,45 @@ export const CASE_STUDY_STATS: readonly CaseStudyStat[] = [
 // ---------------------------------------------------------------------------
 export const TESTIMONIALS_HEADING = "Voices from the Classroom";
 export const TESTIMONIAL_CITE = "tap to see why →";
+export const TESTIMONIAL_AUTOPLAY_SECONDS = 10;
 
-// Quotes verbatim from the Figma design (attribution reads "Q · STUDENT").
-// TODO: replace the `why` back-of-card copy with the real text — the design
-// file's card backs are blank placeholders.
+// Full flashcard content from the original Framer FlashcardTestimonials component
 export const TESTIMONIALS: readonly Testimonial[] = [
   {
-    quote: "Adaptive feedback helped me understand key concepts.",
-    author: "Q · Student",
-    why: "Graded touchpoints came back with feedback tied to the exact step each student missed.",
+    tag: "Q · Physics faculty",
+    front: "It transformed what my students were able to achieve.",
+    back: "The adaptive feedback helped students master difficult concepts faster and at a deeper level than I’d seen in previous semesters — they arrived prepared, confident, and ready to engage.",
+    author: "Faculty, Harvard University",
   },
   {
-    quote: "Tailored to your specific misunderstanding.",
-    author: "Q · Student",
-    why: "The AI tutor follows each student's learning profile, so explanations start from what they already know.",
+    tag: "Q · Student",
+    front: "So many different ways of teaching you.",
+    back: "LOVED Collage, it had so many different ways of teaching you based on whether you were a visual learner, a reader, etc. Super well organized and well structured.",
+    author: "Student",
   },
   {
-    quote: "So many different ways of teaching you.",
-    author: "Q · Student",
-    why: "Faculty publish the same concept as videos, mind maps, flashcards, and practice — students pick what clicks.",
+    tag: "Q · Student",
+    front: "Tailored to your specific misunderstanding.",
+    back: "I think Collage is really helpful because it provides thorough explanations that guide you to the correct answer and are pretty tailored to your specific misunderstanding.",
+    author: "Student",
+  },
+  {
+    tag: "Q · Student",
+    front: "Adaptive feedback helped me understand key concepts.",
+    back: "Collage’s ability to provide adaptive feedback dependent on different variations is especially helpful in understanding key concepts.",
+    author: "Student",
+  },
+  {
+    tag: "Q · Student",
+    front: "I’m a big fan of the videos.",
+    back: "I really have learned from the videos actually. I never knew that they would be that helpful for me, but I have by far understood more, when I skim the reading and watch the videos and take notes. I am a big fan of the videos, both Kelly’s and the AI ones.",
+    author: "Student",
+  },
+  {
+    tag: "Q · Student",
+    front: "Feedback directed at what I can improve.",
+    back: "Yes, for the most part, I like that the feedback is directed to what can be improved, even if the answer given is correct.",
+    author: "Student",
   },
 ] as const;
 

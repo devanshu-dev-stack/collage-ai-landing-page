@@ -1,76 +1,83 @@
-import { ClipboardCheck, PencilLine, Presentation } from "lucide-react";
+/* eslint-disable @next/next/no-img-element */
+import { HandleFrame } from "./handle-frame";
 import { PROCESS_STEPS } from "@/lib/content";
 
-const STEP_ICONS = [PencilLine, Presentation, ClipboardCheck] as const;
+// Hand-drawn icons from the Framer export, matching the reference:
+// pencil/paper (Design), hand + squares (Deliver), orange cards (Assess)
+const STEP_ICONS: readonly string[] = [
+  "/images/icons/note-courses.png",
+  "/images/icons/note-lms.png",
+  "/images/icons/note-grading.png",
+];
 
-// "Collage in Action" — outlined cards in a cycle, joined by dashed arrows
-// on desktop (Design → Deliver → Assess → back to Design).
+// Open-chevron arrowhead for the dashed connectors
+function Chevron({
+  direction,
+  className,
+}: {
+  direction: "right" | "left" | "up";
+  className: string;
+}) {
+  const rotation = { right: "rotate-0", left: "rotate-180", up: "-rotate-90" }[direction];
+  return (
+    <svg
+      viewBox="0 0 18 18"
+      className={`${className} ${rotation} h-[38px] w-[38px] text-ink`}
+      fill="none"
+      aria-hidden="true"
+    >
+      <path d="M5 2.5 L14 9 L5 15.5" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
+// "Collage in Action" — Design / Deliver / Assess cycle: handle-framed cards
+// joined by dashed connectors with chevron arrowheads (desktop).
 export function ProcessMap() {
   return (
-    <div className="relative mx-auto max-w-4xl">
+    <div className="relative mx-auto max-w-[1040px]">
       {/* Dashed connectors, desktop only */}
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 900 620"
-        className="pointer-events-none absolute inset-0 hidden h-full w-full text-ink tablet:block"
-        fill="none"
-      >
-        <defs>
-          <marker
-            id="arrowhead"
-            viewBox="0 0 10 10"
-            refX="8"
-            refY="5"
-            markerWidth="7"
-            markerHeight="7"
-            orient="auto-start-reverse"
-          >
-            <path d="M0 0 L10 5 L0 10 z" fill="currentColor" />
-          </marker>
-        </defs>
-        <path
-          d="M330 130 H 540"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeDasharray="5 6"
-          markerEnd="url(#arrowhead)"
-        />
-        <path
-          d="M700 300 V 370 H 620"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeDasharray="5 6"
-          markerEnd="url(#arrowhead)"
-        />
-        <path
-          d="M300 470 H 180 V 300"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeDasharray="5 6"
-          markerEnd="url(#arrowhead)"
-        />
-      </svg>
+      <div aria-hidden="true" className="absolute inset-0 hidden tablet:block">
+        {/* Design → Deliver */}
+        <div className="absolute left-[35.5%] right-[47%] top-[19%] border-t-2 border-dashed border-ink" />
+        <Chevron direction="right" className="absolute right-[44.2%] top-[19%] -translate-y-1/2" />
+        {/* Deliver → Assess */}
+        <div className="absolute bottom-[22.5%] right-[8%] top-[42%] border-l-2 border-dashed border-ink" />
+        <div className="absolute bottom-[22.5%] right-[8%] w-[13%] border-t-2 border-dashed border-ink" />
+        <Chevron direction="left" className="absolute bottom-[22.5%] right-[20%] -translate-y-1/2" />
+        {/* Assess → Design */}
+        <div className="absolute bottom-[27%] left-[9%] right-[62%] border-t-2 border-dashed border-ink" />
+        <div className="absolute bottom-[27%] left-[9%] top-[45%] border-l-2 border-dashed border-ink" />
+        <Chevron direction="up" className="absolute left-[9%] top-[42%] -translate-x-1/2" />
+      </div>
 
-      <div className="grid gap-5 tablet:grid-cols-[minmax(220px,340px)_minmax(220px,340px)] tablet:justify-between tablet:gap-y-24">
-        {PROCESS_STEPS.map((step, index) => {
-          const Icon = STEP_ICONS[index];
-          return (
-            <article
-              key={step.title}
-              className={`border-2 border-ink bg-cream p-7 ${
-                index === 2 ? "tablet:col-span-2 tablet:w-[360px] tablet:justify-self-center" : ""
-              }`}
-            >
-              <div className="mb-4 text-accent" aria-hidden="true">
-                <Icon className="h-7 w-7" />
-              </div>
-              <h3 className="mb-3 font-display text-card-h3 font-medium text-ink">
+      <div className="grid gap-6 tablet:grid-cols-[34%_35%] tablet:justify-between tablet:gap-y-28">
+        {PROCESS_STEPS.map((step, index) => (
+          <HandleFrame
+            key={step.title}
+            className={
+              index === 2
+                ? "tablet:col-span-2 tablet:w-[34%] tablet:justify-self-center tablet:translate-x-[10%]"
+                : ""
+            }
+          >
+            <article className="bg-cream/60 p-7">
+              <img
+                src={STEP_ICONS[index]}
+                alt=""
+                aria-hidden="true"
+                className="mb-5 h-14 w-auto"
+                loading="lazy"
+              />
+              <h3 className="mb-4 font-display text-[40px] font-normal leading-none tracking-[-0.03em] text-ink">
                 {step.title}
               </h3>
-              <p className="text-body-s leading-relaxed text-ink">{step.text}</p>
+              <p className="text-[19px] leading-[1.35] tracking-[-0.01em] text-ink">
+                {step.text}
+              </p>
             </article>
-          );
-        })}
+          </HandleFrame>
+        ))}
       </div>
     </div>
   );
