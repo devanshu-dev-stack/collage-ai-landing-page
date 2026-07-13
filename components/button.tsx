@@ -2,9 +2,11 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 type ButtonVariant = "dark" | "light";
+type ButtonSize = "md" | "lg";
 
 interface ButtonBaseProps {
   variant?: ButtonVariant;
+  size?: ButtonSize;
   className?: string;
   children: React.ReactNode;
 }
@@ -24,38 +26,46 @@ interface ButtonActionProps extends ButtonBaseProps {
 type ButtonProps = ButtonLinkProps | ButtonActionProps;
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  dark: "bg-ink text-offwhite hover:opacity-90",
-  light: "bg-offwhite text-ink hover:bg-white",
+  dark: "bg-ink text-white hover:opacity-90",
+  light: "bg-cream text-ink hover:bg-offwhite",
 };
 
-const ARROW_CLASSES: Record<ButtonVariant, string> = {
-  dark: "bg-offwhite text-ink",
-  light: "bg-ink text-offwhite",
+const CHIP_CLASSES: Record<ButtonVariant, string> = {
+  dark: "bg-cream text-ink",
+  light: "bg-ink text-cream",
 };
 
-// Pill button with the circular arrow chip, as on the live site
+const SIZE_CLASSES: Record<ButtonSize, string> = {
+  md: "h-[44px] pl-[18px] font-ui text-[16px]",
+  lg: "h-[52px] pl-[20px] font-ui text-[18px]",
+};
+
+// Figma pill button: 52px tall, radius 40, label left, circular arrow chip
+// inset 2px on the right.
 export function Button({
   variant = "dark",
+  size = "lg",
   className = "",
   children,
   ...rest
 }: ButtonProps) {
   const classes = [
-    "inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5",
-    "font-ui text-button font-bold transition-opacity duration-200",
+    "inline-flex items-center gap-3 rounded-[40px] p-[2px] pr-[2px]",
+    "font-medium transition-opacity duration-200",
     "disabled:cursor-not-allowed disabled:opacity-60",
+    SIZE_CLASSES[size],
     VARIANT_CLASSES[variant],
     className,
   ].join(" ");
 
   const content = (
     <>
-      {children}
+      <span className="flex-1 text-center leading-none">{children}</span>
       <span
-        className={`grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full ${ARROW_CLASSES[variant]}`}
+        className={`grid aspect-square h-full place-items-center rounded-full ${CHIP_CLASSES[variant]}`}
         aria-hidden="true"
       >
-        <ArrowRight className="h-3 w-3" />
+        <ArrowRight className="h-5 w-5" />
       </span>
     </>
   );

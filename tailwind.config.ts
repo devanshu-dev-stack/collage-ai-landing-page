@@ -8,6 +8,8 @@ const config: Config = {
       colors: {
         cream: "#fdf8eb",
         ink: "#002341",
+        // Testimonial flip-card stroke/surface (Figma: #04243f)
+        inkcard: "#04243f",
         muted: "#5d6870",
         soft: "#b2b2b2",
         accent: "#ff6713",
@@ -41,16 +43,25 @@ const config: Config = {
         accent: ["var(--font-accent)", "Caveat", "cursive"],
       },
       fontSize: {
-        hero: ["clamp(56px, 7vw, 92px)", { lineHeight: "0.96", letterSpacing: "-0.045em" }],
-        "section-h2": ["36px", { lineHeight: "1.15", letterSpacing: "-0.03em" }],
-        kicker: ["34px", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
+        // Figma: H1 72px / -3.6px / 86.4px line height
+        hero: ["clamp(44px, 5vw, 72px)", { lineHeight: "1.2", letterSpacing: "-0.05em" }],
+        // Figma: section H2 40px / -1.6px / 40px
+        "section-h2": ["40px", { lineHeight: "1", letterSpacing: "-0.04em" }],
         h3: ["20px", { lineHeight: "1.4", letterSpacing: "0" }],
         "card-h3": ["28px", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
+        // Figma: Body L 24px / -0.24px / 31.2px — subheads, about, case study
+        "body-l": ["clamp(19px, 1.7vw, 24px)", { lineHeight: "1.3", letterSpacing: "-0.01em" }],
         "body-m": ["16px", { lineHeight: "1.55", letterSpacing: "0" }],
         "body-s": ["13px", { lineHeight: "1.5", letterSpacing: "0" }],
+        label: ["15px", { lineHeight: "1.4", letterSpacing: "0" }],
         caption: ["12px", { lineHeight: "1.5", letterSpacing: "0.12em" }],
-        button: ["12px", { lineHeight: "1", letterSpacing: "0" }],
-        stat: ["52px", { lineHeight: "0.9", letterSpacing: "0" }],
+        // Figma: quote 34px / 42.5px
+        quote: ["clamp(24px, 2.5vw, 34px)", { lineHeight: "1.25", letterSpacing: "0" }],
+        // Figma: attribution 25px / +2.5px tracking
+        attribution: ["clamp(20px, 1.8vw, 25px)", { lineHeight: "1.2", letterSpacing: "0.1em" }],
+        // Figma: stat numerals 128px
+        stat: ["clamp(88px, 9vw, 128px)", { lineHeight: "1", letterSpacing: "0" }],
+        "stat-label": ["19.5px", { lineHeight: "1.3", letterSpacing: "-0.05em" }],
       },
       screens: {
         tablet: "810px",

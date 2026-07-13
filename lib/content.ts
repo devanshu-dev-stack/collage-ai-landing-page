@@ -4,6 +4,11 @@ import type { Testimonial } from "@/components/testimonial-carousel";
 // Hero (copy verbatim from live site)
 // ---------------------------------------------------------------------------
 export const HERO_HEADING = "Human-centered teaching, amplified by AI";
+// Line break per the Figma heading layout
+export const HERO_HEADING_LINES: readonly string[] = [
+  "Human-centered",
+  "teaching, amplified by AI",
+] as const;
 export const HERO_SUBHEAD =
   "Helping empower faculty members to easily design, deliver, and assess educational experiences that are adaptive, personalized, and improve student learning outcomes";
 
@@ -146,21 +151,26 @@ export const CASE_STUDY_STATS: readonly CaseStudyStat[] = [
 // Testimonials — "Voices from the Classroom"
 // ---------------------------------------------------------------------------
 export const TESTIMONIALS_HEADING = "Voices from the Classroom";
-export const TESTIMONIAL_CITE = "up & up only →";
+export const TESTIMONIAL_CITE = "tap to see why →";
 
-// Quotes verbatim from the live site
+// Quotes verbatim from the Figma design (attribution reads "Q · STUDENT").
+// TODO: replace the `why` back-of-card copy with the real text — the design
+// file's card backs are blank placeholders.
 export const TESTIMONIALS: readonly Testimonial[] = [
   {
     quote: "Adaptive feedback helped me understand key concepts.",
-    author: "A Student",
-    role: "",
-    rating: 5,
+    author: "Q · Student",
+    why: "Graded touchpoints came back with feedback tied to the exact step each student missed.",
+  },
+  {
+    quote: "Tailored to your specific misunderstanding.",
+    author: "Q · Student",
+    why: "The AI tutor follows each student's learning profile, so explanations start from what they already know.",
   },
   {
     quote: "So many different ways of teaching you.",
-    author: "A Student",
-    role: "",
-    rating: 5,
+    author: "Q · Student",
+    why: "Faculty publish the same concept as videos, mind maps, flashcards, and practice — students pick what clicks.",
   },
 ] as const;
 

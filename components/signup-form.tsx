@@ -11,10 +11,14 @@ interface SubscribeErrorBody {
   message?: string;
 }
 
+// Figma input: cream fill, 10px radius, 20/16 padding, hairline border,
+// soft inset shadow
 const INPUT_CLASSES =
-  "w-full rounded-[10px] border-0 bg-offwhite px-4 py-3.5 text-body-m text-ink shadow-[inset_0_0_12px_rgba(102,102,102,0.12)] placeholder:text-muted/60";
+  "w-full rounded-[10px] border border-black/20 bg-cream px-5 py-4 text-[16px] text-ink shadow-[inset_0_0_12px_rgba(102,102,102,0.12)] placeholder:text-[#666666]/50";
 
-// Navy "Stay Updated" section with the oversized COLLAGE AI bookmark art
+const LABEL_CLASSES = "grid gap-2.5 text-label text-cream";
+
+// Navy "Stay Updated" section — bookmark artwork left, form right (Figma 67:689)
 export function SignupForm() {
   const [state, setState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -52,126 +56,133 @@ export function SignupForm() {
     <section
       id="stay-updated"
       aria-labelledby="stay-updated-heading"
-      className="bg-ink text-offwhite"
+      className="bg-ink text-cream"
     >
-      <div className="mx-auto grid max-w-6xl items-center gap-16 px-5 py-24 tablet:grid-cols-2 tablet:gap-20 tablet:px-8 tablet:py-32">
+      <div className="mx-auto grid max-w-[1200px] items-end gap-[10px] px-5 pb-[150px] pt-[100px] tablet:grid-cols-[1fr_553px] tablet:px-10 tablet:pt-[200px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={SIGNUP_ART_SRC}
           alt=""
           aria-hidden="true"
-          className="mx-auto hidden w-full max-w-md tablet:block"
+          className="mx-auto hidden w-full max-w-[471px] tablet:block"
           loading="lazy"
         />
 
-        <form onSubmit={onSubmit} className="grid max-w-lg gap-4">
-          <header className="mb-4">
+        <div className="flex flex-col gap-10">
+          <header className="flex flex-col items-center gap-4 text-center">
             <h2
               id="stay-updated-heading"
-              className="mb-3 font-display text-section-h2 font-medium text-offwhite"
+              className="font-display text-section-h2 font-normal text-cream"
             >
               {SIGNUP_HEADING}
             </h2>
-            <p className="text-body-m text-soft">{SIGNUP_SUBHEAD}</p>
+            <p className="text-body-l text-cream/80">{SIGNUP_SUBHEAD}</p>
           </header>
 
-          <div className="grid gap-4 tablet:grid-cols-2">
-            <label className="grid gap-1.5 text-caption text-offwhite" htmlFor="firstName">
-              First name *
+          <form onSubmit={onSubmit} className="grid gap-[14px]">
+            <div className="grid gap-[14px] tablet:grid-cols-2">
+              <label className={LABEL_CLASSES} htmlFor="firstName">
+                First name *
+                <input
+                  id="firstName"
+                  name="firstName"
+                  autoComplete="given-name"
+                  required
+                  placeholder="Jane"
+                  className={INPUT_CLASSES}
+                />
+              </label>
+              <label className={LABEL_CLASSES} htmlFor="lastName">
+                Last name *
+                <input
+                  id="lastName"
+                  name="lastName"
+                  autoComplete="family-name"
+                  required
+                  placeholder="Smith"
+                  className={INPUT_CLASSES}
+                />
+              </label>
+            </div>
+
+            <label className={LABEL_CLASSES} htmlFor="email">
+              Email *
               <input
-                id="firstName"
-                name="firstName"
-                autoComplete="given-name"
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
                 required
-                placeholder="Jane"
+                placeholder="jane.smith@university.edu"
                 className={INPUT_CLASSES}
               />
             </label>
-            <label className="grid gap-1.5 text-caption text-offwhite" htmlFor="lastName">
-              Last name *
+
+            <label className={LABEL_CLASSES} htmlFor="institution">
+              Institution/Organization *
               <input
-                id="lastName"
-                name="lastName"
-                autoComplete="family-name"
+                id="institution"
+                name="institution"
+                autoComplete="organization"
                 required
-                placeholder="Smith"
+                placeholder="University of Example"
                 className={INPUT_CLASSES}
               />
             </label>
-          </div>
 
-          <label className="grid gap-1.5 text-caption text-offwhite" htmlFor="email">
-            Email *
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              placeholder="jane.smith@university.edu"
-              className={INPUT_CLASSES}
-            />
-          </label>
+            <label className={LABEL_CLASSES} htmlFor="message">
+              Message (Optional)
+              <textarea
+                id="message"
+                name="message"
+                rows={3}
+                placeholder="Tell us about your needs or questions..."
+                className={`${INPUT_CLASSES} min-h-[100px] resize-y`}
+              />
+            </label>
 
-          <label className="grid gap-1.5 text-caption text-offwhite" htmlFor="institution">
-            Institution/Organization *
-            <input
-              id="institution"
-              name="institution"
-              autoComplete="organization"
-              required
-              placeholder="University of Somewhere"
-              className={INPUT_CLASSES}
-            />
-          </label>
-
-          <label className="grid gap-1.5 text-caption text-offwhite" htmlFor="message">
-            Message (Optional)
-            <textarea
-              id="message"
-              name="message"
-              rows={4}
-              placeholder="Tell us about your needs or questions…"
-              className={`${INPUT_CLASSES} min-h-[110px] resize-y`}
-            />
-          </label>
-
-          <label className="flex items-start gap-2.5 text-body-s text-soft" htmlFor="consent">
-            <input
-              id="consent"
-              name="consent"
-              type="checkbox"
-              required
-              className="mt-0.5 h-4 w-4 accent-accent"
-            />
-            I agree to receive updates about Collage AI *
-          </label>
-
-          <button
-            type="submit"
-            disabled={state === "submitting"}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-offwhite px-4 py-3 font-ui text-button font-bold text-ink transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {state === "submitting" ? "Submitting…" : "Stay Updated"}
-            <span
-              className="grid h-[18px] w-[18px] place-items-center rounded-full bg-ink text-offwhite"
-              aria-hidden="true"
+            <label
+              className="flex items-center gap-2.5 pt-2 text-[14px] font-medium tracking-[-0.02em] text-cream"
+              htmlFor="consent"
             >
-              <ArrowRight className="h-3 w-3" />
-            </span>
-          </button>
+              <input
+                id="consent"
+                name="consent"
+                type="checkbox"
+                required
+                className="h-4 w-4 rounded border border-[#f8f3e6] accent-accent"
+              />
+              I agree to receive updates about Collage AI *
+            </label>
 
-          <p aria-live="polite" className="min-h-5 text-center text-body-s">
-            {state === "success" && (
-              <span className="text-offwhite">
-                Thanks — you’re on the list. We’ll be in touch.
+            <button
+              type="submit"
+              disabled={state === "submitting"}
+              className="mt-3 inline-flex h-[52px] w-full items-center rounded-[40px] bg-cream p-[2px] font-ui text-[20px] font-medium text-ink transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              <span className="flex-1 text-center leading-none">
+                {state === "submitting" ? "Submitting…" : "Stay Updated"}
               </span>
-            )}
-            {state === "error" && errorMessage && (
-              <span className="text-accent">{errorMessage}</span>
-            )}
-          </p>
-        </form>
+              <span
+                className="grid aspect-square h-full place-items-center rounded-full bg-ink text-cream"
+                aria-hidden="true"
+              >
+                <ArrowRight className="h-5 w-5" />
+              </span>
+            </button>
+
+            <p aria-live="polite" className="min-h-5 text-center text-body-s">
+              {state === "success" && (
+                <span className="text-cream">
+                  Thanks — you’re on the list. We’ll be in touch.
+                </span>
+              )}
+              {state === "error" && errorMessage && (
+                <span className="text-accent">{errorMessage}</span>
+              )}
+            </p>
+          </form>
+        </div>
       </div>
     </section>
   );

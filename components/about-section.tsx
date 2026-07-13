@@ -1,26 +1,25 @@
 import { ABOUT_HEADING, ABOUT_KICKER, ABOUT_PARAGRAPHS } from "@/lib/content";
 
-// About block — serif kicker, orange heading, bold body (as on the live site).
-// Reused on Home and Case Study.
+// About block — Copernicus kicker, orange subheading, Geist body (Figma:
+// left column, 500px wide). Reused on Home and Case Study.
 export function AboutSection() {
   return (
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="mx-auto max-w-5xl px-5 py-16 tablet:px-8 tablet:py-20"
+      className="mx-auto max-w-[1440px] px-5 py-[100px] tablet:px-[100px]"
     >
-      <p className="mb-1 font-display text-kicker text-ink">{ABOUT_KICKER}</p>
-      <h2 id="about-heading" className="mb-5 text-h3 font-semibold text-accent">
-        {ABOUT_HEADING}
-      </h2>
-      {ABOUT_PARAGRAPHS.map((paragraph) => (
-        <p
-          key={paragraph}
-          className="mb-4 max-w-[850px] text-body-m font-semibold leading-relaxed text-ink"
-        >
-          {paragraph}
-        </p>
-      ))}
+      <div className="flex max-w-[520px] flex-col gap-4">
+        <p className="font-display text-section-h2 text-ink">{ABOUT_KICKER}</p>
+        <h2 id="about-heading" className="text-body-l text-accent">
+          {ABOUT_HEADING}
+        </h2>
+        {ABOUT_PARAGRAPHS.map((paragraph) => (
+          <p key={paragraph} className="text-body-l text-ink/80">
+            {paragraph}
+          </p>
+        ))}
+      </div>
     </section>
   );
 }
